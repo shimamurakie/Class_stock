@@ -1,6 +1,6 @@
 <?php
 // おみくじの群れを用意する
-$mikuji_array = array(
+$mikuji_array = array(//変数名の前には$
   '<img src="daikichi.gif">',
   '<img src="chukichi.gif">',
     '<img src="shokichi.gif">',
@@ -13,7 +13,7 @@ $mikuji_array = array(
 //var_dump($mikuji_array[0]);
 
 // おみくじを引く
-$i = mt_rand(0, count($mikuji_array) - 1 );
+$i = mt_rand(0, count($mikuji_array) - 1 );//乱数
 $mikuji_string = $mikuji_array[$i];
 
 ?>
@@ -25,7 +25,7 @@ $mikuji_string = $mikuji_array[$i];
 
 <body>
 今日のあなたの運勢は
-【<?php echo $mikuji_string; ?>】です！
+<?php echo $mikuji_string; ?>です！
 </body>
 
 </html>
