@@ -1,16 +1,17 @@
-/*---------------------------------------------
-Win32AP031.cpp	Step2
------------------------------------------------*/
+
+#define PI 3.141592
+
 
 #include <windows.h>
 #include <tchar.h>
+#include <math.h>
 
 // プロトタイプ宣言
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 // 大域変数
-static TCHAR szWindowClass[] = _T("Win32AP031");
-static TCHAR szTitle[] = _T("Win32AP031");
+static TCHAR szWindowClass[] = _T("Win32AP016");
+static TCHAR szTitle[] = _T("Win32AP016");
 HINSTANCE	hInst;
 
 int WINAPI WinMain(HINSTANCE hInstance,
@@ -58,10 +59,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		szWindowClass,					// ウィンドウクラス名
 		szTitle,							// タイトルバーに表示する文字列
 		WS_OVERLAPPEDWINDOW,		// ウィンドウの種類
-		CW_USEDEFAULT,				// ウィンドウを表示する位置(X座標）
-		CW_USEDEFAULT,				// ウィンドウを表示する位置(Y座標）
-		CW_USEDEFAULT,				// ウィンドウの幅
-		CW_USEDEFAULT,				// ウィンドウの高さ
+		100,								// ウィンドウを表示する位置(X座標)
+		100,								// ウィンドウを表示する位置(Y座標)
+		320,								// ウィンドウの幅
+		700,								// ウィンドウの高さ
 		NULL,							// 親ウィンドウのウィンドウハンドル
 		NULL,							// メニューハンドル
 		hInst,							// インスタンスハンドル
@@ -91,70 +92,237 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 // ウィンドウプロシージャ
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
-	static LPCTSTR TEST_STR = _T("Test");
-	static LOGFONT logfont;	// フォント情報の構造体
+	static LPCTSTR TEST_STR = _T("i");
+	static LPCTSTR TEST_STR2 = _T("n");
+	static LPCTSTR TEST_STR3 = _T("f");
+	static LPCTSTR TEST_STR4 = _T("t");
+	static LPCTSTR TEST_STR5 = _T("y");
+	int deg = 0;
+	double loop = 0;
+	double high = 5.0;
+
+	static LOGFONT logfont;	// フォント情報の構造体 infinity
 	HDC hDC;
 	HFONT hFont;
+	RECT	rc;
+	HBRUSH	hBrush;
+	PAINTSTRUCT ps;
+
+
 
 	switch (message) {
 	case WM_CREATE:			// ウィンドウが作成されたとき
 		ZeroMemory(&logfont, sizeof(logfont));	// フォント情報構造体を０で初期化
-		logfont.lfUnderline = TRUE;				// 下線を引く
+		logfont.lfUnderline = FALSE;				// 下線を引く
 		logfont.lfCharSet = DEFAULT_CHARSET;	// システムのデフォルト文字セットを使う
-		logfont.lfEscapement = 300;
+		logfont.lfEscapement = 0;
+		logfont.lfHeight = high;
 		wsprintf(logfont.lfFaceName, _T("Times New Roman"));
 		break;
 
-	case WM_LBUTTONDOWN:	// マウスの左ボタンが押されたとき
+	case WM_PAINT:
+		hDC = BeginPaint(hWnd, &ps);	// GDI関数による描画を開始する
+		hBrush = CreateSolidBrush(RGB(0, 0, 0));	//黒
+		SelectObject(hDC, hBrush);
+		RoundRect(hDC, 10, 10, 295, 585, 68, 68);
+		RoundRect(hDC, 6, 78, 11, 98, 2, 2);
+		RoundRect(hDC, 6, 119, 11, 154, 2, 2);
+		RoundRect(hDC, 6, 164, 11, 199, 2, 2);
+		RoundRect(hDC, 294, 119, 299, 154, 2, 2);
+		DeleteObject(hBrush);
+		hBrush = CreateSolidBrush(RGB(255, 255, 255));	//白
+		SelectObject(hDC, hBrush);
+		Ellipse(hDC, 96, 40, 106, 50);
+
+		Ellipse(hDC, 148, 26, 154, 32);
+		Rectangle(hDC, 126, 42, 178, 49);
+		Ellipse(hDC, 130, 530, 172, 572);
+
+		DeleteObject(hBrush);
+		hBrush = CreateSolidBrush(RGB(250, 240, 0));	//黄色
+		SelectObject(hDC, hBrush);
+		Rectangle(hDC, 25, 70, 280, 520);
+
+		DeleteObject(hBrush);
+		hBrush = CreateSolidBrush(RGB(0, 0, 0));	//黒
+		SelectObject(hDC, hBrush);
+		Ellipse(hDC, 133, 533, 169, 569);
+
+		DeleteObject(hBrush);
+
+
+
 		hDC = GetDC(hWnd);
-		logfont.lfEscapement = 300;
-		hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
-		SelectObject(hDC, hFont);
-		TextOut(
-			hDC,
-			LOWORD(lParam)-50,
-			HIWORD(lParam)-50,
-			TEST_STR,
-			(int)_tcslen(TEST_STR));
-		DeleteObject(hFont); 	// 作成した論理フォントを削除する
-		ReleaseDC(hWnd, hDC);//ここまで
-		hDC = GetDC(hWnd);
-		logfont.lfEscapement = 900;
-		hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
-		SelectObject(hDC, hFont);
-		TextOut(
-			hDC,
-			LOWORD(lParam) - 50,
-			HIWORD(lParam) ,
-			TEST_STR,
-			(int)_tcslen(TEST_STR));
-		DeleteObject(hFont); 	// 作成した論理フォントを削除する
-		ReleaseDC(hWnd, hDC);//ここまで
-		hDC = GetDC(hWnd);
-		logfont.lfEscapement = 1200;
-		hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
-		SelectObject(hDC, hFont);
-		TextOut(
-			hDC,
-			LOWORD(lParam) -50,
-			HIWORD(lParam) +50,
-			TEST_STR,
-			(int)_tcslen(TEST_STR));
-		DeleteObject(hFont); 	// 作成した論理フォントを削除する
-		ReleaseDC(hWnd, hDC);//ここまで
-		hDC = GetDC(hWnd);
-		logfont.lfEscapement = 1800;
-		hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
-		SelectObject(hDC, hFont);
-		TextOut(
-			hDC,
-			LOWORD(lParam) ,
-			HIWORD(lParam) +50,
-			TEST_STR,
-			(int)_tcslen(TEST_STR));
-		DeleteObject(hFont); 	// 作成した論理フォントを削除する
-		ReleaseDC(hWnd, hDC);//ここまで
+		hBrush = CreateSolidBrush(RGB(128, 128, 255));
+		GetClientRect(hWnd, &rc);
+
+		// 領域をテキスト自体にする
+		SetBkMode(hDC, TRANSPARENT);
+
+		loop = 20;
+
+
+		for (deg = 0; deg <= 0; deg -= 90){
+			hDC = GetDC(hWnd);//ここから
+			//lfHeight;
+			logfont.lfEscapement = deg;
+			hFont = CreateFontIndirect(&logfont);
+			// 領域をテキスト自体にする
+			SetBkMode(hDC, TRANSPARENT);
+			// 論理フォントを作成する
+			SelectObject(hDC, hFont);
+			TextOut(
+				hDC,
+				155 - loop * sin(deg * PI / 1800),
+				300 - loop * cos(deg * PI / 1800),
+				TEST_STR,
+				(int)_tcslen(TEST_STR));
+			DeleteObject(hFont); 	// 作成した論理フォントを削除する
+			ReleaseDC(hWnd, hDC);//ここまで
+			loop += 0.8;
+			if (155 - loop * sin(deg * PI / 1800) < 10 || 155 - loop * sin(deg * PI / 1800)>290){ break; }
+			deg -= 90; high += 0.25;
+			hDC = GetDC(hWnd);//ここから
+			logfont.lfHeight = high;
+			logfont.lfEscapement = deg;
+			hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
+			// 領域をテキスト自体にする
+			SetBkMode(hDC, TRANSPARENT);
+
+			SelectObject(hDC, hFont);
+			TextOut(
+				hDC,
+				155 - loop * sin(deg * PI / 1800),
+				300 - loop * cos(deg * PI / 1800),
+				TEST_STR2,
+				(int)_tcslen(TEST_STR2));
+			DeleteObject(hFont); 	// 作成した論理フォントを削除する
+			ReleaseDC(hWnd, hDC);//ここまで
+			loop += 0.8;
+			if (155 - loop * sin(deg * PI / 1800) < 10 || 155 - loop * sin(deg * PI / 1800)>290){ break; }
+			deg -= 90; high += 0.25;
+			hDC = GetDC(hWnd);//ここから
+			logfont.lfHeight = high;
+			logfont.lfEscapement = deg;
+			hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
+			// 領域をテキスト自体にする
+			SetBkMode(hDC, TRANSPARENT);
+
+			SelectObject(hDC, hFont);
+			TextOut(
+				hDC,
+				155 - loop * sin(deg * PI / 1800),
+				300 - loop * cos(deg * PI / 1800),
+				TEST_STR3,
+				(int)_tcslen(TEST_STR3));
+			DeleteObject(hFont); 	// 作成した論理フォントを削除する
+			ReleaseDC(hWnd, hDC);//ここまで
+			loop += 0.8;
+			if (155 - loop * sin(deg * PI / 1800) < 10 || 155 - loop * sin(deg * PI / 1800)>290){ break; }
+			deg -= 90; high += 0.25;
+			hDC = GetDC(hWnd);//ここから
+			logfont.lfHeight = high;
+			logfont.lfEscapement = deg;
+			hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
+			// 領域をテキスト自体にする
+			SetBkMode(hDC, TRANSPARENT);
+
+			SelectObject(hDC, hFont);
+			TextOut(
+				hDC,
+				155 - loop * sin(deg * PI / 1800),
+				300 - loop * cos(deg * PI / 1800),
+				TEST_STR,
+				(int)_tcslen(TEST_STR));
+			DeleteObject(hFont); 	// 作成した論理フォントを削除する
+			ReleaseDC(hWnd, hDC);//ここまで
+			loop += 0.8;
+			if (155 - loop * sin(deg * PI / 1800) < 10 || 155 - loop * sin(deg * PI / 1800)>290){ break; }
+			deg -= 90; high += 0.25;
+			hDC = GetDC(hWnd);//ここから
+			logfont.lfHeight = high;
+			logfont.lfEscapement = deg;
+			hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
+			// 領域をテキスト自体にする
+			SetBkMode(hDC, TRANSPARENT);
+
+			SelectObject(hDC, hFont);
+			TextOut(
+				hDC,
+				155 - loop * sin(deg * PI / 1800),
+				300 - loop * cos(deg * PI / 1800),
+				TEST_STR2,
+				(int)_tcslen(TEST_STR2));
+			DeleteObject(hFont); 	// 作成した論理フォントを削除する
+			ReleaseDC(hWnd, hDC);//ここまで
+			loop += 0.8;
+			if (155 - loop * sin(deg * PI / 1800) < 18 || 155 - loop * sin(deg * PI / 1800)>290){ break; }
+			deg -= 90; high += 0.25;
+			hDC = GetDC(hWnd);//ここから
+			logfont.lfHeight = high;
+			logfont.lfEscapement = deg;
+			hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
+			// 領域をテキスト自体にする
+			SetBkMode(hDC, TRANSPARENT);
+
+			SelectObject(hDC, hFont);
+			TextOut(
+				hDC,
+				155 - loop * sin(deg * PI / 1800),
+				300 - loop * cos(deg * PI / 1800),
+				TEST_STR,
+				(int)_tcslen(TEST_STR));
+			DeleteObject(hFont); 	// 作成した論理フォントを削除する
+			ReleaseDC(hWnd, hDC);//ここまで
+			loop += 0.8;
+			if (155 - loop * sin(deg * PI / 1800) < 10 || 155 - loop * sin(deg * PI / 1800)>290){ break; }
+			deg -= 90; high += 0.25;
+			hDC = GetDC(hWnd);//ここから
+			logfont.lfHeight = high;
+			logfont.lfEscapement = deg;
+			hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
+			// 領域をテキスト自体にする
+			SetBkMode(hDC, TRANSPARENT);
+
+			SelectObject(hDC, hFont);
+			TextOut(
+				hDC,
+				155 - loop * sin(deg * PI / 1800),
+				300 - loop * cos(deg * PI / 1800),
+				TEST_STR4,
+				(int)_tcslen(TEST_STR4));
+			DeleteObject(hFont); 	// 作成した論理フォントを削除する
+			ReleaseDC(hWnd, hDC);//ここまで
+			loop += 0.8;
+			if (155 - loop * sin(deg * PI / 1800) < 10 || 155 - loop * sin(deg * PI / 1800)>290){ break; }
+			deg -= 90; high += 0.25;
+			hDC = GetDC(hWnd);//ここから
+			logfont.lfHeight = high;
+			logfont.lfEscapement = deg;
+			hFont = CreateFontIndirect(&logfont); 	// 論理フォントを作成する
+			// 領域をテキスト自体にする
+			SetBkMode(hDC, TRANSPARENT);
+
+			SelectObject(hDC, hFont);
+			TextOut(
+				hDC,
+				155 - loop * sin(deg * PI / 1800),
+				300 - loop * cos(deg * PI / 1800),
+				TEST_STR5,
+				(int)_tcslen(TEST_STR5));
+			DeleteObject(hFont); 	// 作成した論理フォントを削除する
+			ReleaseDC(hWnd, hDC);//ここまで
+			loop += 0.8;
+			if (155 - loop * sin(deg * PI / 1800) < 10 || 155 - loop * sin(deg * PI / 1800)>290){ break; }
+
+		}
+
+
+		EndPaint(hWnd, &ps);				// GDI関数による描画を終了する
+
 		break;
+
+
 
 	case WM_DESTROY:
 		PostQuitMessage(0);
@@ -166,3 +334,4 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	}
 	return 0;
 }
+
