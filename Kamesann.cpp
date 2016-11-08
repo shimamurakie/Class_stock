@@ -1,10 +1,11 @@
 
 /*------------------------------------------------------------------------
-	Win32AP034.cpp		 Enterprise‚ð“®‚©‚·
+	Win32AP034.cpp		 Kamesan‚ð“®‚©‚·
 ---------------------------------------------------------------------------*/
 
 #include <windows.h>
 #include <tchar.h>
+#include <stdlib.h>
 
 #define	ID_MYTIMER	(32767)
 #define	ID_MYCHILD	(100)
@@ -17,6 +18,10 @@ LRESULT CALLBACK ChdProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 BOOL InitApp(HINSTANCE, WNDPROC, LPCTSTR);
 BOOL InitInstance(HINSTANCE, int, LPCTSTR);
+
+
+	 int 	a=10;
+	 int 	b=2;
 
 static TCHAR szClassName[]	= _T("Win32AP034");
 static TCHAR szchClassName[]	= _T("child");
@@ -92,8 +97,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 	static HWND		hChdWnd;
 	HINSTANCE		hInst;
 	enum { right_down, left_down,right_up,left_up};
-	static int 	a=0;
-	static int 	b=0;
+
+
 
 	switch(message) {
 	case WM_CREATE:
@@ -126,41 +131,67 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 
 		switch(direction) {
 		case right_down:
-			x += 10;
-			y += 2;
+			x += a;
+			y += b;
 			if (x >= rc.right  - CHD_WIDTH) {
+				a= rand()%(11)+5;
+				b= rand()%(9)+2;
 				direction = left_down;
+
+				
 			}
-			if (y >= rc.bottom  - CHD_HEIGHT)
-				direction = left_up;
-			
+			if (y >= rc.bottom  - CHD_HEIGHT){
+				a= rand()%(11)+5;
+				b= rand()%(9)+2;
+				direction = right_up;
+			}
 			break;
 
 		case left_down:
-			x -= 10;
-			y += 6;
-			if (y >= rc.bottom  - CHD_HEIGHT)
+			x -= a;
+			y += b;
+			if (y >= rc.bottom  - CHD_HEIGHT){
+				a= rand()%(11)+5;
+				b= rand()%(9)+2;
 				direction = left_up;
-			if (x < 0)
-				direction = right_up;
+			}
+			if (x < 0){
+				a= rand()%(11)+5;
+				b= rand()%(9)+2;
+				direction = right_down;
+			
+			}
 			break;
 
 		case left_up:
-			x -= 10;
-			y -= 2;
-			if (x < 0)
+			x -= a;
+			y -= b;
+			if (x < 0){
+				a= rand()%(11)+5;
+				b= rand()%(9)+2;
 				direction = right_up;
-			if (y < 0)
-				direction = right_down;
+			
+			}
+			if (y < 0){
+				a= rand()%(11)+5;
+				b= rand()%(9)+2;
+				direction = left_down;
+			}
 			break;
 
 		case right_up:
-			x += 10;
-			y -= 8;
-			if (y < 0)
+			x += a;
+			y -= b;
+			if (y < 0){
+				a= rand()%(11)+5;
+				b= rand()%(9)+2;
 				direction = right_down;
+			}
 			if (x >= rc.right  - CHD_WIDTH) {
-				direction = left_down;
+				a= rand()%(11)+5;
+				b= rand()%(9)+2;
+				direction = left_up;
+				
 			}
 			break;
 		}
