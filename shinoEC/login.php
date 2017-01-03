@@ -54,23 +54,22 @@ if (isset($_POST['email']) AND isset($_POST['pass'])) {
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<style>
-  .caution {color: #f00;}
-</style>
+<meta http-equiv="content-style-type" content="text/css">
+<link rel="stylesheet" type="text/css" href="style/menu.css">
+
 <title>ログイン</title>
 </head>
 <body>
-<h2>ログイン</h2>
+<h2 class="titlem">ログイン</h2>
 <form id="loginForm" method="post" action="" />
 <p>メールアドレス<br />
-  <input type="text" name="email" value="<?php echo h($email); ?>" />
+  <input class="waku" type="text" name="email" value="<?php echo h($email); ?>" />
 </p>
 <p>パスワード<br />
-  <input type="password" name="pass" value="" />
+  <input class="waku" type="password" name="pass" value="" />
 </p>
 <?php echo $msg; ?>
-  <input type="submit" value="ログイン" />
+  <input class="submitb" type="submit" value="ログイン" />
 </form>
 </body>
 </html>
-	

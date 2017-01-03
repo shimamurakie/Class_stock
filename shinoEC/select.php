@@ -1,4 +1,17 @@
 <?php
+// セッションの開始
+session_start();
+// ユーザ名の取得
+if (isset($_SESSION['uname'])) {
+	$uname = $_SESSION['uname'];
+} else {
+	// ログインページへリダイレクト
+	header('Location: login.php');
+	exit();
+}
+?>
+
+<?php
 // HTML用 エスケープ関数
 function h($s) {
   return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
@@ -27,22 +40,20 @@ try {
 <html>
 <head>
 <meta charset="UTF-8" />
-<style type="text/css">
-	table, th, td {border:solid 1px; border-collapse:collapse; padding:8px;}
-	th {background-color:#ddd;}
-	.right {text-align:right;}
-</style>
+<meta http-equiv="content-style-type" content="text/css">
+<link rel="stylesheet" type="text/css" href="style/menu.css">
+
 <title>欲しいものリスト</title>
 </head>
 <body>
 <h2>検索結果を表示します</h2>
 <table>
-<tr><th>コード</th><th>商品名</th><th>価格</th><th>優先度</th><th>登録日</th><th>備考</th>
-<th colspan="2">操作</th></tr>
+<tr><th>商品名</th><th>価格</th><th>優先度</th><th>登録日</th><th>備考</th>
+<th colspan="2">編集</th></tr>
 <?php
 foreach ($result as $row) {
 	echo "<tr>";
-	echo "<td>", h($row['num']), "</td>";
+//	echo "<td>", h($row['num']), "</td>";
     echo "<td>", h($row['name']), "</td>";
     echo "<td class='right'>", h($row['price']), "</td>";
     echo "<td>", h($row['priority']), "</td>";
@@ -54,8 +65,13 @@ foreach ($result as $row) {
 }
 ?>
 </table>
+
 <p>
-	<input type="button" onClick="history.back();" value="戻る" />
+  <input class="change" type="button" onClick="location.reload();" value="最新情報を表示" />
+  データの更新・削除を行った際はこちらをクリックしてください
+</p>
+<p>
+	<input class="topb" type="button" onClick="history.back();" value="戻る" />
 </p>
 </body>
 </html>

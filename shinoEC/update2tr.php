@@ -1,11 +1,26 @@
 <?php
+// セッションの開始
+session_start();
+// ユーザ名の取得
+if (isset($_SESSION['uname'])) {
+	$uname = $_SESSION['uname'];
+} else {
+	// ログインページへリダイレクト
+	header('Location: login.php');
+	exit();
+}
+?>
+
+<?php
     require("validate.php");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>書籍情報の更新(トランザクション使用例)</title>
+<meta http-equiv="content-style-type" content="text/css">
+<link rel="stylesheet" type="text/css" href="style/menu.css">
+<title>情報の更新</title>
 </head>
 <body>
 <?php
@@ -20,7 +35,7 @@ if (strlen($msg) > 0) {
     } catch (PDOException $e) {
         die("Database Connection failed: ".$e->getMessage());
     }
-    
+
     // DBを更新
     $sql1 = "DELETE FROM wanna WHERE num=?";
     $sql2 = "INSERT INTO wanna (num, name, price, priority, entry, note) VALUES (?, ?, ?, ?, ?, ?)";
@@ -35,7 +50,7 @@ if (strlen($msg) > 0) {
             if ($result && $pre->rowCount() == 1) {
                 $dbh->commit(); // トランザクション正常終了
                 echo "<p>情報を 1 件更新しました。</p>\n";
-				echo "<p><input type=\"button\" onClick=\"history.back();\" value=\"戻る\" /></p>";
+				echo "<p><input class=\"topb\" type=\"button\" onClick=\"history.back();\" value=\"戻る\" /></p>";
                 exit();
             }
         }
@@ -49,7 +64,7 @@ if (strlen($msg) > 0) {
 }
 ?>
 <p>
-    <input type="button" onClick="history.back();" value="戻る" />
+    <input class="topb" type="button" onClick="history.back();" value="戻る" />
 </p>
 </body>
 </html>

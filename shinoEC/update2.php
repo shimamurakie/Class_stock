@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8" />
+<meta http-equiv="content-style-type" content="text/css">
+<link rel="stylesheet" type="text/css" href="style/menu.css">
 <title>情報の更新</title>
 </head>
 <body>
@@ -20,7 +22,7 @@ if (strlen($msg) > 0) {
     } catch (PDOException $e) {
         die("Database Connection failed: ".$e->getMessage());
     }
-    
+
     // DBを更新
     $sql = "UPDATE wanna SET name=?, price=?, priority=?, entry=?, note=? WHERE num=?";
     try {

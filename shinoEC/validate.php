@@ -1,4 +1,17 @@
 <?php
+// セッションの開始
+session_start();
+// ユーザ名の取得
+if (isset($_SESSION['uname'])) {
+	$uname = $_SESSION['uname'];
+} else {
+	// ログインページへリダイレクト
+	header('Location: login.php');
+	exit();
+}
+?>
+
+<?php
 #入力変数
 	#$_POST['isbn'] = "978-1234567890";
 	#$_POST['title'] = "本のタイトル";
@@ -43,9 +56,9 @@ if (empty($_POST['priority'])) {
 } else {
 	$priority  = trim($_POST['priority']);
 		if (!is_numeric($priority))
-		$msg .= "誤りがあります。<br />";
+		$msg .= "[優先度]に入力された値が誤りが数値ではありません。<br />";
 	if ($priority<0 || $priority>10)
-		$msg .= "0以上10以下の数値を入力してください。<br />";
+		$msg .= "[優先度]には0以上10以下の数値を入力してください。<br />";
 }
 
 // 刊行日のチェック

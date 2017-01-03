@@ -14,16 +14,19 @@ if (isset($_SESSION['uname'])) {
 <html lang="ja">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="content-style-type" content="text/css">
+<link rel="stylesheet" type="text/css" href="style/menu.css">
 <title>ようこそ</title>
 </head>
 <body>
-<h2>ようこそ</h2>
-<p><?php echo $uname; ?>さん　こんにちは。</p>
-<h2>書籍管理システムへようこそ</h2>
-<p><a href="select.php">検索・更新・削除</a></p>
-<p><a href="insert.php">追加</a></p>
+
+<h2 class="titlem">欲しいものリスト</h2>
+<p>ユーザ名：<?php echo $uname; ?></p>
+<p><input class="menub" type="button" onclick="location.href='search.php'"value="通常表示へ"></p>
+<p><input class="menub" type="button" onclick="location.href='select.php'"value="更新・削除"></p>
+<p><input class="menub" type="button" onclick="location.href='insert.php'"value="追加"></p>
 <form id="loginForm" method="post" action="login.php" />
-  <input type="submit" value="ログアウト" />
+  <input class="submitb" type="submit" value="ログアウト" />
 </form>
 </body>
 </html>

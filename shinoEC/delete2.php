@@ -1,7 +1,22 @@
+<?php
+// セッションの開始
+session_start();
+// ユーザ名の取得
+if (isset($_SESSION['uname'])) {
+	$uname = $_SESSION['uname'];
+} else {
+	// ログインページへリダイレクト
+	header('Location: login.php');
+	exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
+<meta http-equiv="content-style-type" content="text/css">
+<link rel="stylesheet" type="text/css" href="style/menu.css">
 <title>情報の削除</title>
 </head>
 <body>
@@ -11,7 +26,7 @@ if (empty($_POST["num"])) {
 	echo "<p class='error'>コードが指定されていません。<br /></p>\n";
 } else {
 	$num = trim($_POST["num"]);
-	
+
 	// DBに接続
 	$dsn = "sqlite:database/wanna.db";
 	try {
@@ -20,7 +35,7 @@ if (empty($_POST["num"])) {
 	} catch (PDOException $e) {
 		die("Database Connection failed: ".$e->getMessage());
 	}
-	
+
 	// DBを更新
 	$sql = "DELETE FROM wanna WHERE num=?";
 	try {
@@ -42,7 +57,7 @@ if (empty($_POST["num"])) {
 }
 ?>
 <p>
-	<input type="button" onClick="history.back();" value="戻る" />
+	<input class="topb" type="button" onClick="history.back();" value="戻る" />
 </p>
 </body>
 </html>

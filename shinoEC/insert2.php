@@ -19,6 +19,8 @@ if (isset($_SESSION['uname'])) {
 <head>
 <meta charset="UTF-8" />
 <title>情報の登録</title>
+<meta http-equiv="content-style-type" content="text/css">
+<link rel="stylesheet" type="text/css" href="style/menu.css">
 </head>
 <body>
 <?php
@@ -33,7 +35,7 @@ if (strlen($msg) > 0) {
 	} catch (PDOException $e) {
 		die("Database Connection failed: ".$e->getMessage());
 	}
-	
+
 	// DBを更新
 	$sql = "INSERT INTO wanna (num, name, price, priority , entry ,note) VALUES (?, ?, ?, ?, ?, ? )";
 	try {
@@ -52,7 +54,7 @@ if (strlen($msg) > 0) {
 }
 ?>
 <p>
-	<input type="button" onClick="history.back();" value="戻る" />
+	<input class="topb" type="button" onClick="history.back();" value="戻る" />
 </p>
 </body>
 </html>
