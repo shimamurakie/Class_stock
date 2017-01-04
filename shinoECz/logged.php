@@ -16,7 +16,8 @@ if (isset($_SESSION['uname'])) {
 <meta charset="utf-8">
 <meta http-equiv="content-style-type" content="text/css">
 <link rel="stylesheet" type="text/css" href="style/menu.css">
-<title>ようこそ</title>
+<LINK rel="SHORTCUT ICON" href="favicon.ico">
+<title>欲しいものリスト</title>
 </head>
 <body>
 

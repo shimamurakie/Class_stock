@@ -42,11 +42,11 @@ try {
 <meta charset="UTF-8" />
 <meta http-equiv="content-style-type" content="text/css">
 <link rel="stylesheet" type="text/css" href="style/menu.css">
-
-<title>欲しいものリスト</title>
+<LINK rel="SHORTCUT ICON" href="favicon.ico">
+<title>変更・削除</title>
 </head>
 <body>
-<h2>検索結果を表示します</h2>
+<h2 class="list">変更・削除したいデータを選んでください</h2>
 <table>
 <tr><th>商品名</th><th>価格</th><th>優先度</th><th>登録日</th><th>備考</th>
 <th colspan="2">編集</th></tr>
@@ -68,10 +68,17 @@ foreach ($result as $row) {
 
 <p>
   <input class="change" type="button" onClick="location.reload();" value="最新情報を表示" />
-  データの更新・削除を行った際はこちらをクリックしてください
+  データの更新がされていない際はこちらをクリックしてください
 </p>
+
 <p>
-	<input class="topb" type="button" onClick="history.back();" value="戻る" />
+  <input class="descb" type="button" onclick="location.href='priceupe.php'"value="価格順(降順)">
+  <input class="descb" type="button" onclick="location.href='wantupe.php'"value="欲しい順(降順)">
+	  <input class="descb" type="button" onclick="location.href='entryupe.php'"value="登録順(降順)">
+</p>
+
+<p>
+	<input class="topb" type="button" onClick="location.href='logged.php'" value="戻る" />
 </p>
 </body>
 </html>

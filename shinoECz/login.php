@@ -56,11 +56,11 @@ if (isset($_POST['email']) AND isset($_POST['pass'])) {
 <meta charset="utf-8">
 <meta http-equiv="content-style-type" content="text/css">
 <link rel="stylesheet" type="text/css" href="style/menu.css">
-
+<LINK rel="SHORTCUT ICON" href="favicon.ico">
 <title>ログイン</title>
 </head>
 <body>
-<h2 class="titlem">ログイン</h2>
+<h2 class="titlem">欲しいものリスト</h2>
 <form id="loginForm" method="post" action="" />
 <p>メールアドレス<br />
   <input class="waku" type="text" name="email" value="<?php echo h($email); ?>" />

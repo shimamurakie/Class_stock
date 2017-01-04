@@ -6,7 +6,7 @@ if (isset($_SESSION['uname'])) {
 	$uname = $_SESSION['uname'];
 } else {
 	// ログインページへリダイレクト
-	header('Location: login.php');
+	header('Location: ../login.php');
 	exit();
 }
 ?>
@@ -18,7 +18,7 @@ function h($s) {
 }
 
 // DBに接続
-$dsn = "sqlite:database/wanna.db";
+$dsn = "sqlite:../database/wanna.db";
 try {
 	$dbh = new PDO($dsn);
 	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -27,7 +27,7 @@ try {
 }
 
 // DBを検索
-$sql = "SELECT * FROM wanna ORDER BY price DESC";
+$sql = "SELECT * FROM wanna ORDER BY priority ASC";
 try {
 	$pre = $dbh->prepare($sql);
 	$pre->execute();
@@ -40,12 +40,20 @@ try {
 <html>
 <head>
 <meta charset="UTF-8" />
+<!--
+<style type="text/css">
+	table, th, td {border:solid 1px; border-collapse:collapse; padding:8px;}
+	th {background-color:#ddd;}
+	.right {text-align:right;}
+</style>
+-->
 <meta http-equiv="content-style-type" content="text/css">
-<link rel="stylesheet" type="text/css" href="style/menu.css">
+<link rel="stylesheet" type="text/css" href="../style/menu.css">
+<LINK rel="SHORTCUT ICON" href="../favicon.ico">
 <title>欲しいものリスト</title>
 </head>
 <body>
-<h2>検索結果を表示します</h2>
+<h2 class="list">欲しいものリスト(優先度↑)</h2>
 <table>
 <tr><th>商品名</th><th>価格</th><th>優先度</th><th>登録日</th><th>備考</th>
 </tr>
@@ -65,11 +73,17 @@ foreach ($result as $row) {
 ?>
 </table>
 <p>
-<input class="descb" type="button" onclick="location.href='priceup.php'"value="価格順">
-<input class="descb" type="button" onclick="location.href='wantup.php'"value="欲しい順">
+  <input class="descb" type="button" onclick="location.href='priceup.php'"value="価格順(降順)">
+  <input class="descb" type="button" onclick="location.href='wantup.php'"value="欲しい順(降順)">
+	  <input class="descb" type="button" onclick="location.href='entryup.php'"value="登録順(降順)">
 </p>
 <p>
-<input class="topb" type="button" onclick="location.href='search.php'"value="通常表示へ">
+  <input class="ascb" type="button" onclick="location.href='pricebtm.php'"value="価格順(昇順)">
+  <input class="ascb" type="button" onclick="location.href='wantbtm.php'"value="欲しい順(昇順)">
+	  <input class="ascb" type="button" onclick="location.href='entrybtm.php'"value="登録順(昇順)">
+</p>
+<p>
+<input class="topb" type="button" onclick="location.href='../search.php'"value="通常表示へ">
 <!--	<input type="button" onClick="history.back();" value="通常表示へ1" /> -->
 </p>
 </body>

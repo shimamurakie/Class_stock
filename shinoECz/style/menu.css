@@ -55,6 +55,14 @@ border-width: 2px;
 
   }
 
+	input.edit {
+		font:normal normal normal 100%/1.5 Verdana,Osaka,Chicago,sans-serif;
+border-style: solid;
+border-color: #bb438f;
+border-width: 1px;
+
+	}
+
 /*ボタン--------------------------------------*/
 
 input.submitb{
@@ -74,9 +82,16 @@ height: 50px;
 
 input.descb{
   background-color: #8982dd;
-color: #1f1e22
+color: #1f1e22;
 padding: 5px 5px;
-font-size: 1.6em;
+font-size: 1.3em;
+}
+
+input.ascb{
+  background-color: #dd82a0;
+color: #221e20;
+padding: 5px 5px;
+font-size: 1.3em;
 }
 
 input.change{
@@ -88,7 +103,7 @@ font-size: 1.6em;
 
 input.topb{
   background-color: #a8e683;
-color: #1f1e22
+color: #1f1e22;
 padding: 5px 5px;
 font-size: 1.6em;
 }
@@ -100,9 +115,18 @@ font-size: 1.6em;
 /*テーブル----------------------------------*/
 
 
-table,th, td {border:solid 1px; border-collapse:collapse; padding:8px;
+
+table{border:solid 1px; border-collapse:collapse; padding:0px;
   margin-left: auto;
 margin-right: auto;
+border-color: #758679;
+  background-color: #f2f9f1;
+}
+
+th, td {border:solid 1px;  padding:8px;
+  margin-left: auto;
+margin-right: auto;
+border-color: #758679;
   background-color: #f2f9f1;
 }
 th {background:url(bg02.jpg) repeat  fixed;
@@ -177,6 +201,14 @@ font-weight:bold;
   letter-spacing:1px;
   margin:0px 0px;
   }
+
+	h2.list {
+	font-size:200%;
+	color:#252525;
+	font-family: riip;
+	letter-spacing:1px;
+	margin:0px 0px;
+	}
 
   /* タイトル2行目・アドレス部分 */
   #header h2 {

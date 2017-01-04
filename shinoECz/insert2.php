@@ -21,6 +21,7 @@ if (isset($_SESSION['uname'])) {
 <title>情報の登録</title>
 <meta http-equiv="content-style-type" content="text/css">
 <link rel="stylesheet" type="text/css" href="style/menu.css">
+<LINK rel="SHORTCUT ICON" href="favicon.ico">
 </head>
 <body>
 <?php
@@ -54,7 +55,7 @@ if (strlen($msg) > 0) {
 }
 ?>
 <p>
-	<input class="topb" type="button" onClick="history.back();" value="戻る" />
+<input class="topb" type="button" onClick="history.back();" value="戻る" />
 </p>
 </body>
 </html>

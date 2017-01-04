@@ -14,7 +14,7 @@ if (isset($_SESSION['uname'])) {
 <?php
     $action = "update2tr.php";
     $submit = "更新する";
-    $instruct = "情報を更新してください";
+    $instruct = "情報の更新";
     $noedit = '';
     $cedit = 'readonly = "readonly"';
 

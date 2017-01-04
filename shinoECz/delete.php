@@ -14,7 +14,7 @@ if (isset($_SESSION['uname'])) {
 <?php
 	$action = "delete2.php";
 	$submit = "削除する";
-	$instruct = "削除する情報を確認してください";
+	$instruct = "削除してもよろしいですか?";
 	$noedit = 'readonly = "readonly"';
 	$cedit = 'readonly = "readonly"';
 
