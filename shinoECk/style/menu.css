@@ -1,0 +1,226 @@
+@font-face {
+	  font-family: 'umeG';
+
+	  src: url('ume-ugo4.ttf') format('truetype');
+
+}
+@font-face {
+
+	  font-family: 'riip';
+
+	  src: url('RiiPopkkR.otf') format('opentype');
+	}
+
+/* 装飾用box */
+  .caution {color: #f00;}
+
+
+  /* テンプレート#p003 * designed by starlit * http://sky.starlit.biz/ */
+
+
+  /* 全称セレクタ--------------------------------------------- */
+
+  * {
+  margin:2;padding:2;
+  font:normal normal normal 100%/1.5 umeG;
+    /*   font:normal normal normal 100%/1.5 Verdana,Osaka,Chicago,sans-serif;*/
+  border:none;
+  }
+
+  /* 全体指定------------------------------------------------- */
+
+  body {
+  color:#252525;
+  text-align:center;
+  }
+
+  html {
+  scrollbar-arrow-color:#252525;
+  scrollbar-face-color:#ffffff;
+  scrollbar-highlight-color:#252525;
+  scrollbar-3dlight-color:#ffffff;
+  scrollbar-track-color:#252525;
+  scrollbar-shadow-color:#252525;
+  scrollbar-darkshadow-color:#ffffff;
+  background:url(bg01.jpg) no-repeat  fixed;
+  background-size:100% auto;/* ←背景画像を入れたい場合はここに */
+  }
+  /* スクロールバー指定が不要の場合は削除して下さい */
+
+  input.waku {
+    font:normal normal normal 100%/1.5 Verdana,Osaka,Chicago,sans-serif;
+border-style: solid;
+border-color: #43bb9a;
+border-width: 2px;
+
+  }
+
+	input.edit {
+		font:normal normal normal 100%/1.5 Verdana,Osaka,Chicago,sans-serif;
+border-style: solid;
+border-color: #bb438f;
+border-width: 1px;
+
+	}
+
+/*ボタン--------------------------------------*/
+
+input.submitb{
+  background-color: #c995e2;
+color: #282429;
+padding: 15px 40px;
+font-size: 2.0em;
+}
+
+input.menub{
+  background-color: #95dfe2;
+color: #192a36;
+font-size: 2.0em;
+width: 250px;
+height: 50px;
+}
+
+input.descb{
+  background-color: #8982dd;
+color: #1f1e22;
+padding: 5px 5px;
+font-size: 1.3em;
+}
+
+input.ascb{
+  background-color: #dd82a0;
+color: #221e20;
+padding: 5px 5px;
+font-size: 1.3em;
+}
+
+input.change{
+  background-color: #dee683;
+color: #22221e
+padding: 5px 5px;
+font-size: 1.6em;
+}
+
+input.topb{
+  background-color: #a8e683;
+color: #1f1e22;
+padding: 5px 5px;
+font-size: 1.6em;
+}
+
+.hidden{
+  display:none;
+}
+
+/*テーブル----------------------------------*/
+
+
+
+table{border:solid 1px; border-collapse:collapse; padding:0px;
+  margin-left: auto;
+margin-right: auto;
+border-color: #758679;
+  background-color: #f2f9f1;
+}
+
+th, td {border:solid 1px;  padding:8px;
+  margin-left: auto;
+margin-right: auto;
+border-color: #758679;
+  background-color: #f2f9f1;
+}
+th {background:url(bg02.jpg) repeat  fixed;
+background-size:100% auto;}
+.right {text-align:right;}
+
+
+  /* リンク--------------------------------------------------- */
+
+  a{text-decoration:none;font-size:100%;
+font-weight:bold;
+  }
+  a:link,a:active {color:#123b79;}
+  a:visited {color:#24791c;}
+  a:hover {color:#252525;position:relative;top:1px;left:1px;}
+
+  /* 文字----------------------------------------------------- */
+
+  em {font-weight:bold;font-size:100%;}/* 強調 */
+  strong {font-weight:bold;font-size:120%;border-bottom:2px solid #d9e367;}/* より強い強調 */
+  del {text-decoration:line-through;font-size:100%;}/* 削除 */
+  ins {text-decoration:underline;font-size:100%;}/* 追加 */
+
+  /* その他--------------------------------------------------- */
+
+  ul li {list-style:none;}/* リストマーク非表示 */
+  a {font-size:100%;}
+
+  /* ドットライン指定----------------------------------------- */
+
+  hr.dotline {
+  height:3px;
+  background:url(img/w-line.gif) repeat-x center;
+  }
+
+
+  /* ********************************************************* */
+  /* ヘッダー */
+  /* ********************************************************* */
+
+
+  #header {
+  padding:15px 0px 0px 0px;
+  background:url(img/back.gif);/* ヘッダー部分の背景画像を指定 */
+  }
+
+  /* ヘッダー------------------------------------------------- */
+
+  /* タイトル部分全体 */
+  #header .title {
+  width:690px;/* 全体の横幅■-10pxで */
+  height:75px;
+  text-align:left;
+  margin:0px auto 15px auto;
+  padding:0px 0px 5px 15px;
+  border-left:5px solid #252525;/* 左の縦ライン指定 */
+  }
+
+  /* サイトタイトル */
+  #header h1 {
+  font-size:260%;
+  color:#252525;
+  font-family:impact;
+  letter-spacing:1px;
+  margin:0px 0px;
+  }
+
+  h2.titlem {
+  font-size:260%;
+  color:#252525;
+  font-family: riip;
+  letter-spacing:1px;
+  margin:0px 0px;
+  }
+
+	h2.list {
+	font-size:200%;
+	color:#252525;
+	font-family: riip;
+	letter-spacing:1px;
+	margin:0px 0px;
+	}
+
+  /* タイトル2行目・アドレス部分 */
+  #header h2 {
+  font-size:200%;
+  color:#75c6c3;
+  font-family:Tahoma,sans-serif,"Century Gothic",Osaka;
+  }
+
+  /* タイトル3行目・英字部分 */
+  #header p {
+  font-size:90%;
+  color:#252525;
+  font-family:Tahoma,sans-serif,"Century Gothic",Osaka;
+  margin:-5px 0px 0px 0px;
+  }
